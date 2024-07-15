@@ -1,0 +1,34 @@
+package com.aluracursos.screenmatch.model;
+
+public enum Categoria {
+    //Se establece entre paréntesis como viene de la Api el dato para que reconozca la coincidencia
+    ACCION("Action", "Acción"),
+    ROMANCE("Romance", "Romance"),
+    COMEDIA("Comedy", "Comedia"),
+    DRAMA("Drama", "Drama"),
+    CRIMEN("Crime", "Crimen");
+    private String categoriaOmdb;
+    private String categoriaEspañol;
+    Categoria (String categoriaOmdb, String categoriaEspañol){
+
+        this.categoriaOmdb = categoriaOmdb;
+        this.categoriaEspañol = categoriaEspañol;
+    }
+    public static Categoria fromString(String text){
+        for (Categoria categoria : Categoria.values()){
+            if (categoria.categoriaOmdb.equalsIgnoreCase(text)){
+                return categoria;
+            }
+        }
+        throw new IllegalArgumentException("Ninguna categoría encontrada: " + text);
+    }
+
+    public static Categoria fromEspañol(String text){
+        for (Categoria categoria : Categoria.values()){
+            if (categoria.categoriaEspañol.equalsIgnoreCase(text)){
+                return categoria;
+            }
+        }
+        throw new IllegalArgumentException("Ninguna categoría encontrada: " + text);
+    }
+}
